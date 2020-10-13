@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import styled from "styled-components";
 
@@ -73,7 +73,7 @@ function App() {
 		<AppContainer className="App">
 			<div className="team-form-wrapper">
 				<h1>Team Form</h1>
-				<Form submit={submitForm} />
+				<Form submit={submitForm} memberToEdit={memberToEdit} />
 			</div>
 			<div className="team-container">
 				<h1>Team</h1>

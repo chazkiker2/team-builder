@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import axios from "axios";
 import styled from "styled-components";
 
@@ -24,8 +24,17 @@ const initFormValues = {
 
 const Form = (props) => {
 	const [formValues, setFormValues] = useState(initFormValues);
-	// const {values, update, submit, memberToEdit} = props;
-	const {submit} = props;
+	const {submit, memberToEdit} = props;
+
+	useEffect( () => {
+		const editValues = {};
+		for (const [key, val] of Object.entries({...memberToEdit})) {
+			if (key !== "id" && val) {
+				editValues[key] = val;
+			}
+		}
+		setFormValues(editValues);
+	}, [props.memberToEdit]);
 
 	const onChange = evt => {
 		const {name, value} = evt.target;
