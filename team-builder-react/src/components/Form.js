@@ -1,5 +1,21 @@
 import React, { useState } from 'react';
-import axios from "axios";
+// import axios from "axios";
+import styled from "styled-components";
+
+const FormContainer = styled.form`
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	/* align-items: center; */
+	align-items: stretch;
+	label {
+		padding: 2%;
+	}
+	div.submit {
+		padding: 2%;
+	}
+`;
+
 
 const Form = (props) => {
 	
@@ -16,10 +32,11 @@ const Form = (props) => {
 	};
 
 	return (
-		<form className="form container" onSubmit={onSubmit}>
-			<div className="form-group inputs">
+		
+		<FormContainer onSubmit={onSubmit}>
+			{/* <div className="form-group inputs"> */}
 				<label>
-					Name:
+					Name
 					<input 
 						type="text" 
 						name="name" 
@@ -54,10 +71,12 @@ const Form = (props) => {
 						<option value="project-lead">Project Lead</option>
 					</select>
 				</label>
-				<div className="submit"><button>SUBMIT</button></div>
-			</div>
-		</form>
+				<div className="submit">
+					<button>SUBMIT</button>
+				</div>
+			{/* </div> */}
+		</FormContainer>
 	);
 };
 
-export default FormData;
+export default Form;
