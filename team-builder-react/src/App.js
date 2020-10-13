@@ -49,7 +49,12 @@ const AppContainer = styled.div`
 
 function App() {
 	const [team, setTeam] = useState([]);
-	
+	const [memberToEdit, setMemberToEdit] = useState({});
+
+	const stageMember = (member) => {
+		setMemberToEdit(member);
+		// console.log(member);
+	};
 
 	// const updateForm = (inputName, inputValue) => {
 	// 	setFormValues({ ...formValues, [inputName]: inputValue });
@@ -91,7 +96,7 @@ function App() {
 				<div className="team-wrap">
 					{
 						team.map(mate => {
-							return (<Teammate key={mate.id} details={mate} />);
+							return (<Teammate key={mate.id} details={mate} stageMember={stageMember} />);
 						})
 					}
 				</div>

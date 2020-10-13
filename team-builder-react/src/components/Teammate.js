@@ -9,12 +9,16 @@ const StyledMate = styled.div`
 	align-items: stretch;
 	h2 {
 		font-weight: bold;
-		
+	}
+	button {
+		width: 20%;
+		margin: 0.8rem auto;
+		padding: 0.2rem;
 	}
 `;
 
 const Teammate = (props) => {
-	const { details } = props;
+	const { details, stageMember } = props;
 
 	if (!details) {
 		return <h3>Working on fetching your team-member&apos;s details...</h3>
@@ -25,6 +29,7 @@ const Teammate = (props) => {
 			<h2>Name: {details.name}</h2>
 			<p>Email: {details.email}</p>
 			<p>Role: {details.role}</p>
+			<button onClick={evt => stageMember(details)} >EDIT</button>
 		</StyledMate>
 	);
 
