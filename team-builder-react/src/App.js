@@ -15,10 +15,17 @@ const initFormValues = {
 
 const AppContainer = styled.div`
 	width: 98%;
-	margin: 0 auto;
+	/* margin: 0 auto; */
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+
 	.team-form-wrapper {
 		width: 30%;
 		display: inline-block;
+		border: 1px solid black;
+		margin: 2rem;
 		h1 {
 			font-size: 2rem;
 			font-weight: bold;
@@ -58,7 +65,8 @@ function App() {
 			if (val.trim() === "") {
 				console.log(val);
 				debugger;
-				throw Error("unacceptable input");
+				// throw Error("unacceptable input");
+				return;
 			} else {
 				newMate[key] = val.trim();
 			}

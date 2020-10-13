@@ -63,12 +63,12 @@ const Form = (props) => {
 						onChange={onChange}
 						>
 						<option>--select role---</option>
-						<option value="front-end">Front-End Marketing & Design</option>
-						<option value="data-science">Data Science</option>
-						<option value="react1">React I</option>
-						<option value="react2">React II</option>
-						<option value="api-dev">API Endpoints Developer</option>
-						<option value="project-lead">Project Lead</option>
+						<option value="Frontend--Marketing + Design">Front-End Marketing & Design</option>
+						<option value="Data-Science">Data Science</option>
+						<option value="React I">React I</option>
+						<option value="React II">React II</option>
+						<option value="API Endpoints Dev">API Endpoints Developer</option>
+						<option value="Project Lead">Project Lead</option>
 					</select>
 				</label>
 				<div className="submit">
