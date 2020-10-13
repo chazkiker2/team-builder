@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-// import logo from './logo.svg';
-import './App.css';
 import styled from "styled-components";
+import axios from './axios';
 
 import Form from "./components/Form";
 import Teammate from './components/Teammate';
-import axios from './axios';
 
+import './App.css';
 
 const AppContainer = styled.div`
 	width: 98%;
@@ -42,9 +41,6 @@ const AppContainer = styled.div`
 			align-items: stretch;
 		}
 	}
-	/* display: flex; */
-	/* flex-flow: row nowrap; */
-	/* border: 1px solid gray; */
 `;
 
 function App() {

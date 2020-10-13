@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-// import axios from "axios";
 import styled from "styled-components";
 
 const FormContainer = styled.form`
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: center;
-	/* align-items: center; */
 	align-items: stretch;
 	label {
 		padding: 2%;
@@ -34,11 +32,10 @@ const Form = (props) => {
 			}
 		}
 		setFormValues(editValues);
-	}, [props.memberToEdit]);
+	}, [memberToEdit]);
 
 	const onChange = evt => {
 		const {name, value} = evt.target;
-		// update(name, value);
 		setFormValues({ ...formValues, [name]: value});
 	};
 
@@ -56,13 +53,11 @@ const Form = (props) => {
 		submit(newMate);
 		setFormValues(initFormValues);
 		return newMate;
-		// submit();
 	};
 
 	return (
 		
 		<FormContainer onSubmit={onSubmit}>
-			{/* <div className="form-group inputs"> */}
 				<label>
 					Name
 					<input 
@@ -102,7 +97,6 @@ const Form = (props) => {
 				<div className="submit">
 					<button>SUBMIT</button>
 				</div>
-			{/* </div> */}
 		</FormContainer>
 	);
 };
