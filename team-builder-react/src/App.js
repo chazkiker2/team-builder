@@ -46,9 +46,28 @@ const AppContainer = styled.div`
 function App() {
 	const [team, setTeam] = useState([]);
 	const [memberToEdit, setMemberToEdit] = useState({});
+	// const [isEditing, setIsEditing] = useState(false);
+
+	// const toggle = () => { setIsEditing(!isEditing)};
 
 	const stageMember = (member) => {
-		setMemberToEdit(member);
+		if (member) {
+			// toggle();
+			setMemberToEdit(member);
+		}
+	};
+
+	const editMember = (editMate) => {
+		const newTeam = team.map(member => {
+			if (member.id === editMate.id) {
+				return ({...editMate});
+			} else {
+				return member;
+			}
+		});
+		console.log(newTeam);
+		
+		setTeam([...newTeam]);
 	};
 
 	const submitForm = (newMate) => {
@@ -69,14 +88,22 @@ function App() {
 		<AppContainer className="App">
 			<div className="team-form-wrapper">
 				<h1>Team Form</h1>
-				<Form submit={submitForm} memberToEdit={memberToEdit} />
+				<Form submit={submitForm} memberToEdit={memberToEdit} editMember = {editMember} />
 			</div>
 			<div className="team-container">
 				<h1>Team</h1>
 				<div className="team-wrap">
 					{
 						team.map(mate => {
-							return (<Teammate key={mate.id} details={mate} stageMember={stageMember} />);
+							return (
+								<Teammate 
+									key={mate.id} 
+									details={mate} 
+									stageMember={stageMember} 
+									
+									// isEditing={isEditing}
+									/>
+							);
 						})
 					}
 				</div>

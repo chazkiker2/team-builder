@@ -20,29 +20,39 @@ const initFormValues = {
 	role: "",
 };
 
+function isEmpty(obj) {
+	for(var prop in obj) {
+			if(obj.hasOwnProperty(prop))
+					return false;
+	}
+
+	return true;
+}
+
 const Form = (props) => {
 	const [formValues, setFormValues] = useState(initFormValues);
-	const {submit, memberToEdit} = props;
+	// const [isEditing, setIsEditing] = useState(false);
+	const { submit, editMember } = props;
 
-	useEffect( () => {
+	useEffect(() => {
 		const editValues = {};
-		for (const [key, val] of Object.entries({...memberToEdit})) {
+		for (const [key, val] of Object.entries({ ...props.memberToEdit })) {
 			if (key !== "id" && val) {
 				editValues[key] = val;
 			}
 		}
 		setFormValues(editValues);
-	}, [memberToEdit]);
+	}, [props.memberToEdit]);
 
 	const onChange = evt => {
-		const {name, value} = evt.target;
-		setFormValues({ ...formValues, [name]: value});
+		const { name, value } = evt.target;
+		setFormValues({ ...formValues, [name]: value });
 	};
 
 	const onSubmit = evt => {
 		evt.preventDefault();
 		const newMate = {};
-		for (const [key, val] of Object.entries({...formValues})) {
+		for (const [key, val] of Object.entries({ ...formValues })) {
 			if (val.trim() === "") {
 				debugger;
 				return;
@@ -50,53 +60,63 @@ const Form = (props) => {
 				newMate[key] = val.trim();
 			}
 		}
-		submit(newMate);
+		if (!isEmpty(props.memberToEdit)) {
+			console.log("EDIT");
+			console.log(props.memberToEdit);
+			console.log(newMate);
+			editMember(newMate);
+		} else {
+			console.log("SUBMIT");
+			console.log(props.memberToEdit);
+			console.log(newMate);
+			submit(newMate);
+		}
 		setFormValues(initFormValues);
-		return newMate;
+		// return newMate;
 	};
 
 	return (
-		
+
 		<FormContainer onSubmit={onSubmit}>
-				<label>
-					Name
-					<input 
-						type="text" 
-						name="name" 
-						value={formValues.name} 
-						onChange={onChange} 
-						placeholder="John Snow" 
-						/>
-				</label>
-				<label>
-					Email
-					<input 
-						type="email" 
-						name="email" 
-						value={formValues.email} 
-						onChange={onChange} 
-						placeholder="john.snow@gmail.com" 
-						/>
-				</label>
-				<label>
-					Role
+			<label>
+				Name
+					<input
+					type="text"
+					name="name"
+					value={formValues.name}
+					onChange={onChange}
+					placeholder="John Snow"
+				/>
+			</label>
+			<label>
+				Email
+					<input
+					type="email"
+					name="email"
+					value={formValues.email}
+					onChange={onChange}
+					placeholder="john.snow@gmail.com"
+				/>
+			</label>
+			<label>
+				Role
 					<select
-						value={formValues.role}
-						name="role"
-						onChange={onChange}
-						>
-						<option>--select role---</option>
-						<option value="Frontend--Marketing + Design">Front-End Marketing & Design</option>
-						<option value="Data-Science">Data Science</option>
-						<option value="React I">React I</option>
-						<option value="React II">React II</option>
-						<option value="API Endpoints Dev">API Endpoints Developer</option>
-						<option value="Project Lead">Project Lead</option>
-					</select>
-				</label>
-				<div className="submit">
-					<button>SUBMIT</button>
-				</div>
+					value={formValues.role}
+					name="role"
+					onChange={onChange}
+				>
+					<option>--select role---</option>
+					<option value="Frontend--Marketing + Design">Front-End Marketing & Design</option>
+					<option value="Data-Science">Data Science</option>
+					<option value="React I">React I</option>
+					<option value="React II">React II</option>
+					<option value="API Endpoints Dev">API Endpoints Developer</option>
+					<option value="Project Lead">Project Lead</option>
+				</select>
+			</label>
+			<div className="submit">
+				<button>{isEmpty(props.memberToEdit) ? "SUBMIT" : "RE-SUBMIT" }</button>
+			</div>
 		</FormContainer>
 	);
 };
