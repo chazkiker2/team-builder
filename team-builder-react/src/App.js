@@ -53,28 +53,12 @@ function App() {
 
 	const stageMember = (member) => {
 		setMemberToEdit(member);
-		// console.log(member);
 	};
 
-	// const updateForm = (inputName, inputValue) => {
-	// 	setFormValues({ ...formValues, [inputName]: inputValue });
-	// };
 	const submitForm = (newMate) => {
-		// const newMate = {};
-		// for (const [key, val] of Object.entries({ ...formValues })) {
-		// 	if (val.trim() === "") {
-		// 		console.log(val);
-		// 		debugger;
-		// 		// throw Error("unacceptable input");
-		// 		return;
-		// 	} else {
-		// 		newMate[key] = val.trim();
-		// 	}
-		// }
 		axios.post("fakeapi.com", newMate)
 			.then(res => {
 				setTeam([...team, res.data])
-				// setFormValues(initFormValues);
 			})
 			.catch(err => {
 				console.log(err);
