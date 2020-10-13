@@ -16,19 +16,38 @@ const FormContainer = styled.form`
 	}
 `;
 
+const initFormValues = {
+	name: "",
+	email: "",
+	role: "",
+};
 
 const Form = (props) => {
-	
-	const {values, update, submit} = props;
+	const [formValues, setFormValues] = useState(initFormValues);
+	// const {values, update, submit, memberToEdit} = props;
+	const {submit} = props;
 
 	const onChange = evt => {
 		const {name, value} = evt.target;
-		update(name, value);
+		// update(name, value);
+		setFormValues({ ...formValues, [name]: value});
 	};
 
 	const onSubmit = evt => {
 		evt.preventDefault();
-		submit();
+		const newMate = {};
+		for (const [key, val] of Object.entries({...formValues})) {
+			if (val.trim() === "") {
+				debugger;
+				return;
+			} else {
+				newMate[key] = val.trim();
+			}
+		}
+		submit(newMate);
+		setFormValues(initFormValues);
+		return newMate;
+		// submit();
 	};
 
 	return (
@@ -40,7 +59,7 @@ const Form = (props) => {
 					<input 
 						type="text" 
 						name="name" 
-						value={values.name} 
+						value={formValues.name} 
 						onChange={onChange} 
 						placeholder="John Snow" 
 						/>
@@ -50,7 +69,7 @@ const Form = (props) => {
 					<input 
 						type="email" 
 						name="email" 
-						value={values.email} 
+						value={formValues.email} 
 						onChange={onChange} 
 						placeholder="john.snow@gmail.com" 
 						/>
@@ -58,7 +77,7 @@ const Form = (props) => {
 				<label>
 					Role
 					<select
-						value={values.role}
+						value={formValues.role}
 						name="role"
 						onChange={onChange}
 						>

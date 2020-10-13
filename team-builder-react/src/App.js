@@ -7,11 +7,6 @@ import Form from "./components/Form";
 import Teammate from './components/Teammate';
 import axios from './axios';
 
-const initFormValues = {
-	name: "",
-	email: "",
-	role: "",
-};
 
 const AppContainer = styled.div`
 	width: 98%;
@@ -54,27 +49,27 @@ const AppContainer = styled.div`
 
 function App() {
 	const [team, setTeam] = useState([]);
-	const [formValues, setFormValues] = useState(initFormValues);
+	
 
-	const updateForm = (inputName, inputValue) => {
-		setFormValues({ ...formValues, [inputName]: inputValue });
-	};
-	const submitForm = () => {
-		const newMate = {};
-		for (const [key, val] of Object.entries({ ...formValues })) {
-			if (val.trim() === "") {
-				console.log(val);
-				debugger;
-				// throw Error("unacceptable input");
-				return;
-			} else {
-				newMate[key] = val.trim();
-			}
-		}
+	// const updateForm = (inputName, inputValue) => {
+	// 	setFormValues({ ...formValues, [inputName]: inputValue });
+	// };
+	const submitForm = (newMate) => {
+		// const newMate = {};
+		// for (const [key, val] of Object.entries({ ...formValues })) {
+		// 	if (val.trim() === "") {
+		// 		console.log(val);
+		// 		debugger;
+		// 		// throw Error("unacceptable input");
+		// 		return;
+		// 	} else {
+		// 		newMate[key] = val.trim();
+		// 	}
+		// }
 		axios.post("fakeapi.com", newMate)
 			.then(res => {
 				setTeam([...team, res.data])
-				setFormValues(initFormValues);
+				// setFormValues(initFormValues);
 			})
 			.catch(err => {
 				console.log(err);
@@ -89,7 +84,7 @@ function App() {
 		<AppContainer className="App">
 			<div className="team-form-wrapper">
 				<h1>Team Form</h1>
-				<Form values={formValues} update={updateForm} submit={submitForm} />
+				<Form submit={submitForm} />
 			</div>
 			<div className="team-container">
 				<h1>Team</h1>
