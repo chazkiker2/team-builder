@@ -8,7 +8,7 @@ import Teammate from './components/Teammate';
 import axios from './axios';
 
 const initFormValues = {
-	username: "",
+	name: "",
 	email: "",
 	role: "",
 };
@@ -56,6 +56,8 @@ function App() {
 		const newMate = {};
 		for (const [key, val] of Object.entries({ ...formValues })) {
 			if (val.trim() === "") {
+				console.log(val);
+				debugger;
 				throw Error("unacceptable input");
 			} else {
 				newMate[key] = val.trim();
@@ -63,7 +65,7 @@ function App() {
 		}
 		axios.post("fakeapi.com", newMate)
 			.then(res => {
-				setTeam([...Teammate, res.data])
+				setTeam([...team, res.data])
 				setFormValues(initFormValues);
 			})
 			.catch(err => {

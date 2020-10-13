@@ -15,8 +15,8 @@ export default {
   get() {
     return Promise.resolve({ status: 200, success: true, data: initialTeamList })
   },
-  post(url, { username, email, role }) {
-    const newMate = { id: uuid(), username, email, role }
+  post(url, { name, email, role }) {
+    const newMate = { id: uuid(), name, email, role }
     return Promise.resolve({ status: 200, success: true, data: newMate })
   }
 }
