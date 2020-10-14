@@ -41,7 +41,9 @@ const Form = (props) => {
 				editValues[key] = val;
 			}
 		}
+		console.log("formValues before set", formValues);
 		setFormValues(editValues);
+		console.log("formValues after set", formValues);
 	}, [props.memberToEdit]);
 
 	const onChange = evt => {
