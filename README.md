@@ -1,42 +1,42 @@
 # Module Project: Forms - Team Builder
 
-This project allows you to practice the concepts and techniques learned in this module and apply them in a concrete project. This module explored Form management in React. You learned about controled inputs, semantic HTML, some ES6 tools like the spread operator and computed properties, and synthetic events. In your project you will demonstrate proficiency of these subjects and principles by creating an application using each of these.
+This project allows you to practice the concepts and techniques learned in this module and apply them in a concrete project. This module explored Form management in React. You learned about controlled inputs, semantic HTML, some ES6 tools like the spread operator and computed properties, and synthetic events. In your project you will demonstrate proficiency of these subjects and principles by creating an application using each of these.
 
 ## Introduction
 
-In this project you'll build an app that will keep track of memebers of a team. You'll be able to add members to this team as well as edit their details.
+In this project you'll build an app that will keep track of members of a team. You'll be able to add members to this team as well as edit their details.
 
 ## Instructions
 
 ### Task 1: Project Set Up
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your team lead as collaborator on Github.
-- [ ] Clone your OWN version of the repository in your terminal
-- [ ] Use `npx create-react-app team-builder --use-npm` or `create-react-app team-builder` to initiate the project.
-- [ ] CD into your `team-builder` directory
-- [ ] Start up the app using `npm start`
-- [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
-- [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
-- [ ] Push commits: git push origin `<firstName-lastName>`.
+- [x] Create a forked copy of this project.
+- [x] Add your team lead as collaborator on Github.
+- [x] Clone your OWN version of the repository in your terminal
+- [x] Use `npx create-react-app team-builder --use-npm` or `create-react-app team-builder` to initiate the project.
+- [x] CD into your `team-builder` directory
+- [x] Start up the app using `npm start`
+- [x] Create a new branch: git checkout -b `<firstName-lastName>`.
+- [x] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+- [x] Push commits: git push origin `<firstName-lastName>`.
 
 ### Task 2: Minimum Viable Product
 
-- [ ] Render a list of team members from state.
-- [ ] Build a form to add a new member to the list of members.
+- [x] Render a list of team members from state.
+- [x] Build a form to add a new member to the list of members.
 
 #### Setup your state
 
-- [ ] Import the `useState` hook and set up state to keep your team members list.
-- [ ] Give the state variable you just declared a default value. You will need to keep track of a list of team members and each team member will have several key/value pairs associated with them.
-- [ ] Render your list of team members.
+- [x] Import the `useState` hook and set up state to keep your team members list.
+- [x] Give the state variable you just declared a default value. You will need to keep track of a list of team members and each team member will have several key/value pairs associated with them.
+- [x] Render your list of team members.
 
 #### Build your form
 
-- [ ] In `Form.js` build out your markup.
-- [ ] Build inputs for `name`, `email` and `role` (backend engineer, frontend engineer, designer, etc. Use your imagination).
-- [ ] You will have to decide which component is responsible for maintaining the _state_ of the form (`Form` itself, or its parent `App`). Each approach has advantages and disadvantages.
-- [ ] Render your `Form` component in `App`. The `App` component should hand down through props any callback(s) needed for `Form` to do its job (adding new members to your team members state on submit).
+- [x] In `Form.js` build out your markup.
+- [x] Build inputs for `name`, `email` and `role` (backend engineer, frontend engineer, designer, etc. Use your imagination).
+- [x] You will have to decide which component is responsible for maintaining the _state_ of the form (`Form` itself, or its parent `App`). Each approach has advantages and disadvantages.
+- [x] Render your `Form` component in `App`. The `App` component should hand down through props any callback(s) needed for `Form` to do its job (adding new members to your team members state on submit).
 
 Now you are finished with MVP! Move on to the stretch goals at the bottom. The first is to add the functionality to edit members. As this is a very complicated process, steps have been included here to help you through that.
 
@@ -46,12 +46,12 @@ Next we're going to reuse the `Form` component to edit team members. You can try
 
 #### Get App.js ready for editing members
 
-- [ ] Add an edit button, or an edit icon next to each member you are rendering. When the button/icon is clicked, we want to set that member to a state property in `App` called `memberToEdit`. The function to do this should live in `App`, even if the button/icon invoking it are in a different component. Just pass the function down as a prop.
+- [x] Add an edit button, or an edit icon next to each member you are rendering. When the button/icon is clicked, we want to set that member to a state property in `App` called `memberToEdit`. The function to do this should live in `App`, even if the button/icon invoking it are in a different component. Just pass the function down as a prop.
 
 #### Get Form.js ready to edit members
 
-- [ ] Pass `memberToEdit` down to `Form.js`
-- [ ] If `Form` receives `props.memberToEdit`, then that member object should populate your state object that is controlling your forms. Now, it may be tempting to do something like this: `const [member, setMember] = useState(props.memberToEdit || {name: '', email: '', role: ''})` for our form to update with whatever member we click on. However, this is a trap that will cause a pretty big bug in our app. If props are used to set state like this, the state property will _NOT_ update when the prop changes. So... what kind of technique have we learned to keep something in sync with props when they change? `useEffect`! Write an effect that syncs with `props.memberToEdit`. When `props.memberToEdit` changes, the effect will update the `member` state object with the new data. This will populate the inputs with whichever member we are trying to update.
+- [x] Pass `memberToEdit` down to `Form.js`
+- [x] If `Form` receives `props.memberToEdit`, then that member object should populate your state object that is controlling your forms. Now, it may be tempting to do something like this: `const [member, setMember] = useState(props.memberToEdit || {name: '', email: '', role: ''})` for our form to update with whatever member we click on. However, this is a trap that will cause a pretty big bug in our app. If props are used to set state like this, the state property will _NOT_ update when the prop changes. So... what kind of technique have we learned to keep something in sync with props when they change? `useEffect`! Write an effect that syncs with `props.memberToEdit`. When `props.memberToEdit` changes, the effect will update the `member` state object with the new data. This will populate the inputs with whichever member we are trying to update.
 
 The flow for editing is hard to conceptualize. It should go something like this:
 
